@@ -1,0 +1,89 @@
+def printBezout(im):
+ #@ param im: Image Non inverted image
+ allp=getPixels(im)
+ for p in allp:
+   
+  r=getRed(p)
+  b=invert(r)
+  
+  if b!=0: 
+  
+   setRed(p,b)
+    
+  g=getGreen(p) 
+  b=invert(g) 
+  if b!=0:
+  
+   setGreen(p,b)
+   
+  b=getBlue(p)
+  b=invert(b)
+  
+  if b!=0:
+  
+   setBlue(p,b)
+   
+ repaint(im)
+
+def invert(a):
+#@ param a: Integer  Value of the pixel that can be inverted
+ r=0 
+ temp=0 
+ x=128
+ oi=1
+ oj=0
+ i=0
+ j=1
+ while a%x!=0:
+  if r!=a % x:
+    r=a % x
+    temp=x
+    a=temp
+    x=r
+    temp1=i 
+    temp2=j
+    i=((-a)*i)+oi
+    j=((-a)*j)+oj
+    oi=temp1
+    oj=temp2
+ if r==1: 
+  while i<0 and i>128:
+   if i<0:
+    i=i+128
+   if i>128:
+    i=i-128
+  return i 
+ else:
+  return 0
+def inv(im,im2):
+
+  #@ param im: Image Non inverted image
+ allp=getPixels(im)
+ for p in allp:
+   
+  r=getRed(p)
+  b=invert(r)
+  
+  if b!=0: 
+  
+   setRed(p,b)
+    
+  g=getGreen(p) 
+  b=invert(g) 
+  if b!=0:
+  
+   setGreen(p,b)
+   
+  b=getBlue(p)
+  b=invert(b)
+  
+  if b!=0:
+  
+   setBlue(p,b)
+
+
+ 
+ 
+im=makePicture(pickAFile()) 
+im2=printBezout(im)
+inv(im,im2)
